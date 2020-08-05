@@ -14,11 +14,14 @@ use App\Http\Controllers\PriceListController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::group(['middleware' => ['cors', 'json.response']], function () {
+    // public routes
+    Route::post('/login', 'Api\AuthController@login')->name('login.api');
+    Route::post('/register','Api\AuthController@register')->name('register.api');
+    Route::post('/logout', 'Api\AuthController@logout')->name('logout.api');
+    Route::get('/pricelist', 'PriceListController@index')->name('pricelist.get');
+});
 Route::middleware('auth:api')->group(function () {
-    Route::apiResource('/pricelist', 'PriceListController');
+    Route::apiResource('/pricelist', 'PriceListController')->except('index');
     Route::get('/logout', 'Api\AuthController@logout')->name('logout');
 });
-Route::get('/login', function () {
-    return view('home');
-}) -> name('login');
