@@ -17,15 +17,7 @@ class PriceListController extends Controller
         return response()->json(['data'=>PriceList::all()]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +27,8 @@ class PriceListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $response = ['message' =>  'store function'];
+        return response($response, 200);
     }
 
     /**
@@ -46,18 +39,8 @@ class PriceListController extends Controller
      */
     public function show(PriceList $priceList)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\PriceList  $priceList
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(PriceList $priceList)
-    {
-        //
+        $response = ['message' =>  'show function'];
+        return response($response, 200);
     }
 
     /**
@@ -69,7 +52,8 @@ class PriceListController extends Controller
      */
     public function update(Request $request, PriceList $priceList)
     {
-        //
+        $response = ['message' =>  'update function'];
+        return response($response, 200);
     }
 
     /**
@@ -80,6 +64,7 @@ class PriceListController extends Controller
      */
     public function destroy(PriceList $priceList)
     {
-        //
+        $response = ['message' =>  'destroy function'];
+        return response($response, 200);
     }
 }
