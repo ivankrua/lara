@@ -214,8 +214,20 @@
         }
 
         function deleteRow(id) {
-            console.log('delete' + id);
-            location.reload();
+            $.ajax({
+                url: 'api/admin_pricelist/' + id,
+                type: "DELETE",
+                dataType: 'json',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + appConfig.token);
+                },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    location.reload();
+                }
+            });
         }
 
         $('#new-list-btn').click(() => {
