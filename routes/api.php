@@ -15,4 +15,10 @@ use App\Http\Controllers\PriceListController;
 |
 */
 
-Route::apiResource('/pricelist', 'PriceListController');
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('/pricelist', 'PriceListController');
+    Route::get('/logout', 'Api\AuthController@logout')->name('logout');
+});
+Route::get('/login', function () {
+    return view('home');
+}) -> name('login');
