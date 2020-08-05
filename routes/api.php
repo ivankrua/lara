@@ -22,6 +22,7 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
     Route::get('/pricelist', 'PriceListController@index')->name('pricelist.get');
 });
 Route::middleware('auth:api')->group(function () {
-    Route::apiResource('/pricelist', 'PriceListController')->except('index');
+    Route::apiResource('/admin_pricelist', 'PriceListAdminController');
+    Route::post('/servers', 'ImportController@store')->name('pricelist.import');
     Route::get('/logout', 'Api\AuthController@logout')->name('logout');
 });
