@@ -119,6 +119,7 @@ class PriceListAdminController extends PriceListController
                         break;
                 }
             }
+            $current->save();
         }
         return $current;
     }

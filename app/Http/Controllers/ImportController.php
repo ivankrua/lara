@@ -16,10 +16,11 @@ class ImportController extends Controller
      */
     public function store(Request $request)
     {
+        $json = null;
         $file = $request->file();
         if ($file !== null)
         {
-            $f = $file->openFile('r');
+            $f = $file['file']->openFile('r');
             $jsonData = '';
             while (!$f->eof())
             {
@@ -30,10 +31,8 @@ class ImportController extends Controller
             {
                 $this->addNewItems($json['data']);
                 $this->findInDB($json['data']);
-                PriceList::whereNOTIn('id', function ($query)
-                {
-                    ImportCache::all(['recordid']);
-                })->delete();
+                PriceList::whereNOTIn('id', ImportCache::query()->select('recordid')->get())->delete();
+                ImportCache::truncate();
             }
         }
         $response = ['data' => PriceList::all()];
