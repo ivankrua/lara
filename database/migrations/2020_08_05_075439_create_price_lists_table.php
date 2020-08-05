@@ -16,6 +16,12 @@ class CreatePriceListsTable extends Migration
         Schema::create('price_lists', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('provider', 128);
+            $table->string('brand', 128);
+            $table->string('location',128);
+            $table->string('cpu', 128);
+            $table->string('drive', 128);
+            $table->decimal('price', 13, 4);
         });
     }
 
