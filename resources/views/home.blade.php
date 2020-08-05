@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Page Title')
+@section('title', 'Home')
 
 @section('content')
     @parent
 <script>
+    validateUser();
     $.getJSON( "api/pricelist", function( data ) {
         if ('data' in data)
         {
